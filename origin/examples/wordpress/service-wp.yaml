@@ -7,8 +7,8 @@ metadata:
 spec: 
   ports:
     # the port that this service should serve on
-    - port: 5055
-      targetPort: wordpress
+    - port: 80
+      targetPort: 5055
   # label keys and values that must match in order to receive traffic for this service
   selector: 
     name: wordpress
