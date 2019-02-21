@@ -1,0 +1,4 @@
+# Persistent Storage templates for OpenShift v3.9 clusters
+
+Use these templates to create `PersistentVolume` & `PersistentVolumeClaim`
+object definitions. 
