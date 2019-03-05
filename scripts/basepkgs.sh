@@ -4,6 +4,11 @@
 
 sudo yum -y update
 sudo yum -y install centos-release-openshift-origin39 wget git net-tools bind-utils yum-utils iptables-services bridge-utils bash-completion kexec-tools sos psacct ansible
+# create .ssh folder in /root
+mkdir -p /root/.ssh
+# create passwordless ssh key for root
+ssh-keygen -t rsa \
+    -f /root/.ssh/id_rsa -N ''
 sudo yum -y update
 sudo yum -y install \
     https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
