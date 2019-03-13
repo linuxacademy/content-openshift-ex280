@@ -1,0 +1,140 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    openshift.io/deployment-config.latest-version: "1"
+    openshift.io/deployment-config.name: docker-registry
+    openshift.io/deployment.name: docker-registry-1
+    openshift.io/scc: privileged
+  creationTimestamp: 2019-01-02T18:29:37Z
+  generateName: docker-registry-1-
+  labels:
+    deployment: docker-registry-1
+    deploymentconfig: docker-registry
+    docker-registry: default
+  name: docker-registry-1-mfz4k
+  namespace: default
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicationController
+    name: docker-registry-1
+    uid: 58656311-0ebc-11e9-ad4e-06ab0a21ba59
+  resourceVersion: "4355329"
+  selfLink: /api/v1/namespaces/default/pods/docker-registry-1-mfz4k
+  uid: 5c25a12f-0ebc-11e9-ad4e-06ab0a21ba59
+spec:
+  containers:
+  - env:
+    - name: REGISTRY_HTTP_ADDR
+      value: :5000
+    - name: REGISTRY_HTTP_NET
+      value: tcp
+    - name: REGISTRY_HTTP_SECRET
+      value: yAGiI3LVF/kPtKZSEcFG91v49hT7/44bUK8f8KkEweA=
+    - name: REGISTRY_MIDDLEWARE_REPOSITORY_OPENSHIFT_ENFORCEQUOTA
+      value: "false"
+    image: openshift/origin-docker-registry:v3.11.0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: 5000
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    name: registry
+    ports:
+    - containerPort: 5000
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: 5000
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    securityContext:
+      privileged: true
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /registry
+      name: registry-storage
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: registry-token-pbrjf
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  imagePullSecrets:
+  - name: registry-dockercfg-fnfnb
+  nodeName: localhost
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: registry
+  serviceAccountName: registry
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - hostPath:
+      path: /var/lib/minishift/base/openshift.local.pv/registry
+      type: ""
+    name: registry-storage
+  - name: registry-token-pbrjf
+    secret:
+      defaultMode: 420
+      secretName: registry-token-pbrjf
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2019-01-02T18:29:37Z
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: 2019-03-11T19:22:05Z
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: null
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: 2019-01-02T18:29:37Z
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://4e1f2a5024e0bf2fbd60ceee3ce06921a670b1410711013bf5810a859878f64f
+    image: docker.io/openshift/origin-docker-registry:v3.11.0
+    imageID: docker-pullable://docker.io/openshift/origin-docker-registry@sha256:82b693c48dc3a12d78b1b30a73c4a48b656118f542350663f42ddd19193fc417
+    lastState:
+      terminated:
+        containerID: docker://a4a02d0eb012783fa8f37f515d76983519d652c6a698e209c70286a6d704d419
+        exitCode: 255
+        finishedAt: 2019-03-11T19:20:43Z
+        reason: Error
+        startedAt: 2019-03-05T13:13:59Z
+    name: registry
+    ready: true
+    restartCount: 12
+    state:
+      running:
+        startedAt: 2019-03-11T19:21:55Z
+  hostIP: 192.168.64.5
+  phase: Running
+  podIP: 172.17.0.7
+  qosClass: Burstable
+  startTime: 2019-01-02T18:29:37Z
