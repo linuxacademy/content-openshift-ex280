@@ -1,0 +1,5 @@
+/home/data/persistent01 *(rw,async,all_squash)
+/home/data/persistent02 *(rw,async,all_squash)
+/home/data/persistent03 *(rw,async,all_squash)
+/home/data/persistent04 *(rw,async,all_squash)
+/home/data/persistent05 *(rw,async,all_squash)

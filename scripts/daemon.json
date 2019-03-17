@@ -1,0 +1,3 @@
+{
+    "insecure-registries" : ["docker-registry-default.apps.okd.10.0.2.206.xip.io"]
+}
