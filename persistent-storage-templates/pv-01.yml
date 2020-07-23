@@ -1,13 +1,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv00001
+  name: strickland-pv
 spec:
   capacity:
-    storage: 5Gi
+    storage: 1Gi
   accessModes:
   - ReadWriteOnce
   nfs:
-    path: /var/tmp/nfs/
-    server: local
+    path: /home/data/persistent01
+    server: ip-10-0-2-206.ec2.internal
   persistentVolumeReclaimPolicy: Recycle
+  claimRef:
+  name: mariadb
+  namespace: strickland-propane
