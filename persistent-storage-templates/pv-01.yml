@@ -12,5 +12,5 @@ spec:
     server: ip-10-0-2-206.ec2.internal
   persistentVolumeReclaimPolicy: Recycle
   claimRef:
-  name: mariadb
-  namespace: strickland-propane
+    name: mariadb
+    namespace: strickland-propane
